@@ -2,11 +2,14 @@ package com.bayu.student.service.impl;
 
 import com.bayu.student.dto.CreateStudentRequest;
 import com.bayu.student.dto.CreateStudentResponse;
+import com.bayu.student.dto.StudentDTO;
 import com.bayu.student.entity.Student;
 import com.bayu.student.repository.StudentRepository;
 import com.bayu.student.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -24,13 +27,14 @@ public class StudentServiceImpl implements StudentService {
 
         studentRepository.save(student);
 
-        return CreateStudentResponse.builder()
-                .id(student.getId())
-                .firstName(student.getFirstName())
-                .lastName(student.getLastName())
-                .email(student.getEmail())
-                .schoolId(student.getSchoolId())
-                .build();
+        CreateStudentResponse response = new CreateStudentResponse();
+        response.setId(student.getId());
+        response.setFirstName(student.getFirstName());
+        response.setLastName(student.getLastName());
+        response.setEmail(student.getEmail());
+        response.setSchoolId(student.getSchoolId());
+
+        return response;
     }
 
 }
