@@ -19,4 +19,6 @@ public class CreateStudentResponse {
 
     private String email;
 
+    private Integer schoolId;
+
 }
