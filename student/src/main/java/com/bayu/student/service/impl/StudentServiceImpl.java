@@ -37,4 +37,19 @@ public class StudentServiceImpl implements StudentService {
         return response;
     }
 
+    @Override
+    public List<StudentDTO> getAllStudents() {
+        return studentRepository.findAll().stream()
+                .map(student -> {
+                    StudentDTO studentDTO = new StudentDTO();
+                    student.setId(student.getId());
+                    student.setFirstName(student.getFirstName());
+                    student.setLastName(student.getLastName());
+                    student.setEmail(student.getEmail());
+                    student.setSchoolId(student.getSchoolId());
+                    return studentDTO;
+                })
+                .toList();
+    }
+
 }
