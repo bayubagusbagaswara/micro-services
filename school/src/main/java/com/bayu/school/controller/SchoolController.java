@@ -2,6 +2,7 @@ package com.bayu.school.controller;
 
 import com.bayu.school.dto.CreateSchoolRequest;
 import com.bayu.school.dto.CreateSchoolResponse;
+import com.bayu.school.dto.FullSchoolResponse;
 import com.bayu.school.dto.SchoolDTO;
 import com.bayu.school.service.SchoolService;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +29,13 @@ public class SchoolController {
     public ResponseEntity<List<SchoolDTO>> getAllSchools() {
         List<SchoolDTO> allSchools = schoolService.getAllSchools();
         return ResponseEntity.ok(allSchools);
+    }
+
+    @GetMapping(path = "/with-student/{school-id}")
+    public ResponseEntity<FullSchoolResponse> getSchoolByStudentId(
+            @PathVariable(name = "school-id") Integer schoolId) {
+
+        return ResponseEntity.ok(schoolService.findSchoolsWithStudents(schoolId));
     }
 
 }
