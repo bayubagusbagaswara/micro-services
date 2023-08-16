@@ -2,6 +2,7 @@ package com.bayu.school.service.impl;
 
 import com.bayu.school.dto.CreateSchoolRequest;
 import com.bayu.school.dto.CreateSchoolResponse;
+import com.bayu.school.dto.FullSchoolResponse;
 import com.bayu.school.dto.SchoolDTO;
 import com.bayu.school.entity.School;
 import com.bayu.school.repository.SchoolRepository;
@@ -45,4 +46,16 @@ public class SchoolServiceImpl implements SchoolService {
                 .toList();
     }
 
+    @Override
+    public FullSchoolResponse findSchoolsWithStudents(Integer schoolId) {
+        School school = schoolRepository.findById(schoolId)
+                .orElse(
+                        School.builder()
+                                .name("NOT_FOUND")
+                                .email("NOT_FOUND")
+                                .build()
+                );
+        // find all the students from the student microservice
+        return null;
+    }
 }
