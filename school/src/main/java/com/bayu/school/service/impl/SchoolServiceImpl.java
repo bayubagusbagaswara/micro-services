@@ -34,6 +34,15 @@ public class SchoolServiceImpl implements SchoolService {
 
     @Override
     public List<SchoolDTO> getAllSchools() {
-        return null;
+        return schoolRepository.findAll().stream()
+                .map(school -> {
+                    SchoolDTO dto = new SchoolDTO();
+                    dto.setId(school.getId());
+                    dto.setName(school.getName());
+                    dto.setEmail(school.getEmail());
+                    return dto;
+                })
+                .toList();
     }
+
 }
