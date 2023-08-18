@@ -1,5 +1,6 @@
 package com.bayu.school.service.impl;
 
+import com.bayu.school.client.StudentClient;
 import com.bayu.school.dto.CreateSchoolRequest;
 import com.bayu.school.dto.CreateSchoolResponse;
 import com.bayu.school.dto.FullSchoolResponse;
@@ -17,6 +18,7 @@ import java.util.List;
 public class SchoolServiceImpl implements SchoolService {
 
     private final SchoolRepository schoolRepository;
+    private StudentClient studentClient;
 
     @Override
     public CreateSchoolResponse save(CreateSchoolRequest request) {
