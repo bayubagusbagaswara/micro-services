@@ -1,10 +1,7 @@
 package com.bayu.school.service.impl;
 
 import com.bayu.school.client.StudentClient;
-import com.bayu.school.dto.CreateSchoolRequest;
-import com.bayu.school.dto.CreateSchoolResponse;
-import com.bayu.school.dto.FullSchoolResponse;
-import com.bayu.school.dto.SchoolDTO;
+import com.bayu.school.dto.*;
 import com.bayu.school.entity.School;
 import com.bayu.school.repository.SchoolRepository;
 import com.bayu.school.service.SchoolService;
@@ -58,6 +55,14 @@ public class SchoolServiceImpl implements SchoolService {
                                 .build()
                 );
         // find all the students from the student microservice
-        return null;
+        List<StudentDTO> students = studentClient.findAllStudentsBySchool(schoolId);
+
+        FullSchoolResponse response = new FullSchoolResponse();
+        response.setName(school.getName());
+        response.setEmail(school.getEmail());
+        response.setStudents(students);
+
+        return response;
     }
+
 }
